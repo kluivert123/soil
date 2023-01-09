@@ -9,7 +9,6 @@ import os
 import pathlib
 import numpy as np
 import datetime as dt
-import dash
 import dash_bootstrap_components as dbc
 #####################################################
 #                    Create the Dash app            #
