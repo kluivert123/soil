@@ -1,5 +1,5 @@
 import dash
-from dash import dcc, html
+from dash import dcc, html,  Input, Output
 import plotly.express as px
 import pandas as pd
 from plotly.subplots import make_subplots
@@ -7,6 +7,7 @@ import plotly.subplots as sp
 import plotly.graph_objects as go
 import os
 import pathlib
+import pycaret
 import numpy as np
 import datetime as dt
 import dash_bootstrap_components as dbc
@@ -140,13 +141,15 @@ def update_bar_chart(selected_column):
 
 # Function to update the histogram
 @app.callback(
-    dash.dependencies.Output('histogram-plot', 'figure'),
-    [dash.dependencies.Input('bin-size-slider', 'value')])
+        Output('histogram-plot', 'figure'),
+        Input('histogram-dropdown', 'value'))
+        #,
+        #Input('bin-size-slider', 'value'))
 
-def update_histogram(bin_size):
+    
+def update_histogram(value):
     # Create a histogram chart using Plotly
-    figure=px.histogram(df,x='Magna_6 ORP_mV', nbins=bin_size )
-
+    figure=px.histogram(df,x=value )
     return figure
 
 #####################################################
